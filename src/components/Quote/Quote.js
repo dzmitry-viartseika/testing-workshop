@@ -1,12 +1,15 @@
 import { quotes } from '../../constants/quotes';
 import styles from './Quote.module.css'
+import { selectRandomQuote } from '../../helpers/selectRandomQuote';
 
-export function Quote() {
-    const {text, author} = quotes[0];
+const DEFAULT_QUOTE = selectRandomQuote(quotes);
+
+export function Quote({ quote = DEFAULT_QUOTE }) {
+    const { text, author } = quote;
     return (
         <footer className={styles.quote}>
-            <blockquote>{ text }</blockquote>
-            <cite className={styles.author}>- { author }</cite>
+            <blockquote data-testid="blockquote">{ text }</blockquote>
+            <cite data-testid="cite" className={styles.author}>- { author }</cite>
         </footer>
     )
 }

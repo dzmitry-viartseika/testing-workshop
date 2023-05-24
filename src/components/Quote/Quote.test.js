@@ -2,18 +2,21 @@ import { render, screen } from '@testing-library/react';
 import { Quote } from './Quote';
 import { quotes } from "../../constants/quotes";
 
-describe('when rendered', () => {
-    const {text, author} = quotes[0];
+const QUOTE_STUB = quotes[1];
 
-    it('should contain an expected text', () => {
-        render(<Quote />);
-        const result = screen.getByText(text);
+describe("when rendered", () => {
+
+    const { text, author } = QUOTE_STUB;
+
+    it("should contain an expected text", () => {
+        render(<Quote quote={QUOTE_STUB} />);
+        const result = screen.getByText(new RegExp(text));
         expect(result).toBeInTheDocument();
-    })
+    });
 
-    it('should contain an expected author', () => {
-        render(<Quote />);
+    it("should contain an expected author", () => {
+        render(<Quote quote={QUOTE_STUB} />);
         const result = screen.getByText(new RegExp(author));
         expect(result).toBeInTheDocument();
-    })
-})
+    });
+});
