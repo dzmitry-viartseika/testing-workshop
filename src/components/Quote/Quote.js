@@ -1,3 +1,3 @@
 export function Quote() {
-    return <blockquote />
+    return <blockquote>Test Quote</blockquote>
 }
