@@ -17,7 +17,11 @@ describe('when rendered', () => {
 });
 
 describe('when called an `setRubValue` method', () => {
-    it.todo('should update the RUB value')
+    it('should update the RUB value', () => {
+        const {result } = renderHook(() => useConverter(TEST_RUB_AMOUNT, COURSE));
+        result.current.setRubValue(10);
+        expect(result.current.rubValue).toEqual(10);
+    })
     it.todo('should recalculate the USD value')
 });
 
