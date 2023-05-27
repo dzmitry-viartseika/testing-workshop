@@ -1,8 +1,10 @@
 import { useState } from "react";
+import {rubToUsd} from "../helpers/converter";
 
-export function useConverter() {
-    const [rubValue, setRubValue] = useState(100);
-    const [usdValue, setUsdValue] = useState(1);
+export function useConverter(initialRubValue, course) {
+    const calculatedUsdAmount = rubToUsd(initialRubValue, course);
+    const [rubValue, setRubValue] = useState(initialRubValue);
+    const [usdValue, setUsdValue] = useState(calculatedUsdAmount);
 
     return { rubValue, setRubValue, usdValue, setUsdValue }
 }
