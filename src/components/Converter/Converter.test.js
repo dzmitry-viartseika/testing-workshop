@@ -10,14 +10,14 @@ describe('when rendered', () => {
 
     it('rub input should have a value with a usd amount', () => {
         render(<Converter />);
-        expect(screen.getByLabelText(/Сумма в долларах/)).toHaveValue(1);
+        expect(screen.getByLabelText(/Сумма в долларах/)).toHaveValue(2.38);
     })
 })
 
 describe('when typed in a Rub input', () => {
     it('should update its value', () => {
         render(<Converter />);
-        const inputElement = screen.getByTestId('converter__input--rubs');
+        const inputElement = screen.getByTestId('converter__input--rub');
         userEvent.clear(inputElement);
         userEvent.type(inputElement, '42');
         expect(inputElement).toHaveValue(42);

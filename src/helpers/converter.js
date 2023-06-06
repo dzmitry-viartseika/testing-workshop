@@ -1,8 +1,7 @@
-const ROUNDING = 2;
 export function rubToUsd(value, course) {
-    return +(value / course).toFixed(ROUNDING);
+    return Number((value / course).toFixed(2));
 }
 
 export function usdToRub(value, course) {
-    return +(value * course).toFixed(ROUNDING)
+    return Number((value * course).toFixed(2));
 }

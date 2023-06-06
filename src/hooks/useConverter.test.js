@@ -8,11 +8,11 @@ const CALCULATED_USD_AMOUNT = 2.38;
 describe('when rendered', () => {
     it('RUB input should have a value equal to initial', () => {
         const {result } = renderHook(() => useConverter(TEST_RUB_AMOUNT, COURSE));
-        expect(result.current.rubValue).toEqual(TEST_RUB_AMOUNT);
+        expect(result.current.rub).toEqual(TEST_RUB_AMOUNT);
     })
     it('USD value should equal to calculated USD amount', () => {
         const {result } = renderHook(() => useConverter(TEST_RUB_AMOUNT, COURSE));
-        expect(result.current.usdValue).toEqual(CALCULATED_USD_AMOUNT);
+        expect(result.current.usd).toEqual(CALCULATED_USD_AMOUNT);
     })
 });
 
@@ -20,16 +20,16 @@ describe('when called an `setRubValue` method', () => {
     it('should update the RUB value', () => {
         const {result } = renderHook(() => useConverter(TEST_RUB_AMOUNT, COURSE));
         act(() => {
-            result.current.setRubValue(10);
+            result.current.updateRub(10);
         })
-        expect(result.current.rubValue).toEqual(10);
+        expect(result.current.rub).toEqual(10);
     })
     it('should recalculate the USD value', () => {
         const { result } = renderHook(() => useConverter(TEST_RUB_AMOUNT, COURSE));
         act(() => {
             result.current.updateRub(10);
         })
-        expect(result.current.usdValue).toEqual(0.24);
+        expect(result.current.usd).toEqual(0.24);
     })
 });
 
@@ -37,9 +37,9 @@ describe('when called an `setUsd Value` method', () => {
     it('should update the USD value', () => {
         const { result } = renderHook(() => useConverter(TEST_RUB_AMOUNT, COURSE));
         act(() => {
-            result.current.setUsdValue(10);
+            result.current.updateUsd(10);
         })
-        expect(result.current.usdValue).toEqual(10);
+        expect(result.current.usd).toEqual(10);
     })
     it('should recalculate the RUB value', () => {
         const { result } = renderHook(() => useConverter(TEST_RUB_AMOUNT, COURSE));
@@ -47,7 +47,7 @@ describe('when called an `setUsd Value` method', () => {
             result.current.updateUsd(10);
         })
 
-        expect(result.current.rubValue).toEqual(420);
+        expect(result.current.rub).toEqual(420);
     })
 })
 

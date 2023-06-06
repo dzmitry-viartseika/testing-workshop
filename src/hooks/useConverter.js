@@ -1,37 +1,40 @@
 import { useState } from "react";
-import {rubToUsd, usdToRub} from "../helpers/converter";
+import { rubToUsd, usdToRub } from "../helpers/converter";
+
+const RUB_USD = 'rub-usd';
 
 export function useConverter(initialRubValue, course) {
     const calculatedUsdAmount = rubToUsd(initialRubValue, course);
-    const [rubValue, setRubValue] = useState(initialRubValue);
-    const [usdValue, setUsdValue] = useState(calculatedUsdAmount);
+    const [rub, setRub] = useState(initialRubValue);
+    const [usd, setUsd] = useState(calculatedUsdAmount);
 
-    const convert = () => {
+    // useEffect(() => {
+    //     setRub(initialRubValue);
+    //     setUsd(rubToUsd(initialRubValue, course));
+    // }, [initialRubValue, course]);
 
-    }
+    function createUpdater(direction) {
+        const isFromRub = direction === "rub-usd";
+        const convert = isFromRub ? rubToUsd : usdToRub;
+        const setOriginal = isFromRub ? setRub : setUsd;
+        const setTarget = isFromRub ? setUsd : setRub;
 
-    const createUpdater = (direction) => {
         return function update(value) {
-            const original = +(value);
-            const target = convert(original, course)
-        }
+            const original = Number(value);
+            const target = convert(original, course);
+
+            setOriginal(original);
+            setTarget(target);
+        };
     }
 
-    const updateRub = (value) => {
-        const rub = +(value);
-        const usd = rubToUsd(rub, course);
+    const updateRub = createUpdater("rub-usd");
+    const updateUsd = createUpdater("usd-rub");
 
-        setRubValue(rub);
-        setUsdValue(usd);
-    }
-
-    const updateUsd = (value) => {
-        const usd = +(value);
-        const rub = usdToRub(usd, course);
-
-        setRubValue(rub);
-        setUsdValue(usd);
-    }
-
-    return { rubValue, setRubValue, usdValue, setUsdValue, updateRub, updateUsd }
+    return {
+        rub,
+        usd,
+        updateRub,
+        updateUsd,
+    };
 }
