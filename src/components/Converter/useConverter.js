@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { rubToUsd, usdToRub } from "../helpers/converter";
+import { rubToUsd, usdToRub } from "../../helpers/converter";
 
 const RUB_USD = 'rub-usd';
 const USD_RUB = 'usd-rub';

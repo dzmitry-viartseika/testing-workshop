@@ -1,5 +1,5 @@
 import styles from './Converter.module.css'
-import { useConverter } from '../../hooks/useConverter';
+import { useConverter } from './useConverter';
 
 export function Converter() {
     const {rub, updateUsd, usd, updateRub} = useConverter(100, 42);
