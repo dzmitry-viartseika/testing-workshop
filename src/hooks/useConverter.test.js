@@ -52,5 +52,19 @@ describe('when called an `setUsd Value` method', () => {
 })
 
 describe('when re-rendered', () => {
-    it.todo('should update its value')
+    it('should update its value', () => {
+        // rerender этот же хук, а если бы мы передали другой хук то это был бы инстанс другого хука
+        const { result, rerender } = renderHook(({ value, course } ) => useConverter(value, course), {
+            initialProps: {
+                value: TEST_RUB_AMOUNT,
+                course: COURSE,
+            }
+        });
+
+        rerender({ value: 10, course: 50 });
+
+        const { rub, usd } = result.current
+        expect(rub).toEqual(10);
+        expect(usd).toEqual(0.2)
+    })
 })
