@@ -53,7 +53,6 @@ describe('when called an `setUsd Value` method', () => {
 
 describe('when re-rendered', () => {
     it('should update its value', () => {
-        // rerender этот же хук, а если бы мы передали другой хук то это был бы инстанс другого хука
         const { result, rerender } = renderHook(({ value, course } ) => useConverter(value, course), {
             initialProps: {
                 value: TEST_RUB_AMOUNT,
