@@ -2,6 +2,7 @@ import { screen } from "@testing-library/react";
 import { renderWithStore } from "../../testUtils";
 import { RefreshCourse } from "./RefreshCourse";
 import {errorCourseState, loadingCourseState} from "../../testUtils/store";
+import userEvent from "@testing-library/user-event";
 
 describe("when the button is in initial state", () => {
     it("should contain the default text", () => {
@@ -34,6 +35,12 @@ describe("when the button is in an error state", () => {
 
 describe("when the button is clicked", () => {
     it("should call the required action", () => {
+        const dispatchMock = jest.fn();
+        renderWithStore(<RefreshCourse />, {
+            dispatch: dispatchMock
+        });
 
+        userEvent.click(screen.getByTestId('refresh-course__button'))
+        expect(dispatchMock).toHaveBeenCalled();
     });
 });
