@@ -5,16 +5,18 @@ import {
     fetchTodayCourse,
 } from "../../store/features/course/slice";
 
+const LOADING = 'loading';
+
 export function RefreshCourse() {
     const status = useSelector(selectStatus);
     const error = useSelector(selectError);
-    const isLoading = status === "loading";
+    const isLoading = status === LOADING;
 
     const dispatch = useDispatch();
 
     return (
         <>
-            <button type="button" onClick={() => dispatch(fetchTodayCourse())}>
+            <button data-testid="refresh-course__button" type="button" onClick={() => dispatch(fetchTodayCourse())}>
                 {isLoading ? "Обновляем курс..." : "Обновить курс"}
             </button>
             {error && <p>{error}</p>}
