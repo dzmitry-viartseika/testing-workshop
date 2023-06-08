@@ -1,7 +1,7 @@
 export function fetchTodayCourseFulfilled(state, action) {
     return {
         ...state,
-        error: action.payload,
+        value: action.payload,
         status: 'idle'
     }
 }
