@@ -1,8 +1,11 @@
 import styles from './Converter.module.css'
 import { useConverter } from './useConverter';
+import { useSelector } from 'react-redux';
+import {selectCourse} from "../../store/features/course/slice";
 
 export function Converter() {
-    const {rub, updateUsd, usd, updateRub} = useConverter(100, 42);
+    const initialCourse = useSelector(selectCourse);
+    const {rub, updateUsd, usd, updateRub} = useConverter(100, initialCourse);
     return (
         <form className={styles.converter}>
             <label>

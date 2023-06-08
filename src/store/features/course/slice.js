@@ -1,4 +1,4 @@
-import { createSlice } from '@redux/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 export const initialCourseState = {
     value: 42,
 }
@@ -8,5 +8,5 @@ const courseSlice = createSlice({
     initialState: initialCourseState,
 })
 
-export const selectorCourse = (state) => state.course.value;
+export const selectCourse = (state) => state.course.value;
 export default courseSlice.reducer
